@@ -27,7 +27,7 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: exec/json-extract-path-*
+          file: ./exec/*
           file_glob: true
           tag: ${{ github.ref }}
           overwrite: true
@@ -55,7 +55,8 @@ jobs:
         with:
           always-auth: true
           node-version: 12.x
-      - uses: jgierer12/npm-auth-gpr@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          registry-url: https://npm.pkg.github.com/
+          scope: "@lukasbach"
       - run: yarn publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
