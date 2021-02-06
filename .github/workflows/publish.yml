@@ -7,7 +7,7 @@ on:
       - 'v*'
 
 jobs:
-  build:
+  publish-binary:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -19,12 +19,6 @@ jobs:
       - run: yarn build
       - run: yarn bundle
       - run: ls ./exec
-
-  publish-binary:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
       - uses: xresloader/upload-to-github-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -33,7 +27,6 @@ jobs:
           draft: false
 
   publish-npm:
-    needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -42,6 +35,11 @@ jobs:
           always-auth: true
           node-version: 12.x
           registry-url: https://registry.npmjs.org/
+      - run: yarn
+      - run: yarn prettier:check
+      - run: yarn build
+      - run: yarn bundle
+      - run: ls ./exec
       - run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
