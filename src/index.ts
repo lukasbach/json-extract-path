@@ -28,7 +28,7 @@ const options = program.opts() as Options;
 
   try {
     file = await fs.promises.readFile(uri, { encoding: 'utf-8' });
-  } catch(e) {
+  } catch (e) {
     console.error(`Could not read file ${uri}`);
     console.log(e);
     process.exit(1);
@@ -36,7 +36,7 @@ const options = program.opts() as Options;
 
   try {
     json = JSON.parse(file);
-  } catch(e) {
+  } catch (e) {
     console.error(`Could not parse JSON.`);
     console.log(e);
     process.exit(1);
@@ -44,7 +44,7 @@ const options = program.opts() as Options;
 
   try {
     value = jp.query(json, options.jsonpath);
-  } catch(e) {
+  } catch (e) {
     console.error(`Could not query JSONPath.`);
     console.log(e);
     process.exit(1);
