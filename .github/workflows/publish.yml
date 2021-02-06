@@ -14,7 +14,6 @@ jobs:
         with:
           node-version: 12
       - run: yarn prettier:check
-      - run: yarn build
       - run: yarn test
       - run: yarn bundle
 
