@@ -1,6 +1,6 @@
 {
   "name": "json-extract-path",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "CLI for extracting a value from a JSON file based on a JSONPath input",
   "main": "dist/index.js",
   "bin": "dist/index.js",
