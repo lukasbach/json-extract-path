@@ -1,6 +1,7 @@
 name: Publish
 
 on:
+  workflow_run:
   push:
     tags:
       - 'v*'
@@ -17,6 +18,7 @@ jobs:
       - run: yarn prettier:check
       - run: yarn build
       - run: yarn bundle
+      - run: ls ./exec
 
   publish-binary:
     needs: build
