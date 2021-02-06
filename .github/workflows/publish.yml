@@ -18,19 +18,15 @@ jobs:
       - run: yarn build
       - run: yarn bundle
 
-  create-release:
+  publish-binary:
     needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Upload binaries to release
-        uses: svenstaro/upload-release-action@v2
+      - uses: AButler/upload-release-assets@v2.0
         with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: ./exec/*
-          file_glob: true
-          tag: ${{ github.ref }}
-          overwrite: true
+          files: 'exec/*'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
 
   publish-npm:
     needs: build
@@ -45,18 +41,3 @@ jobs:
       - run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-
-  publish-gpr:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          always-auth: true
-          node-version: 12.x
-          registry-url: https://npm.pkg.github.com/
-          scope: '@lukasbach'
-      - run: yarn publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
