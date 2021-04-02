@@ -16,7 +16,7 @@ Install globally via
 or directly use via
 
     npx json-extract-path
-    
+
 You can also download native binaries under the [Releases Tab](https://github.com/lukasbach/json-extract-path/releases) and use them if you don't want to install NodeJS.
 
 Usage:
