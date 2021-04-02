@@ -1,8 +1,5 @@
 # CLI Typescript Commander Starter
 
-![Pretty](https://github.com/lukasbach/json-extract-path/workflows/Pretty/badge.svg)
-![Publish](https://github.com/lukasbach/json-extract-path/workflows/Publish/badge.svg)
-
 CLI for extracting a value from a JSON file based on a JSONPath input
 
     npx json-extract-path --file ./example.json --jsonpath "$.store.book[*].author"
