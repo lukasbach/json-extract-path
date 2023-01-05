@@ -1,4 +1,4 @@
-# CLI Typescript Commander Starter
+# Json Extract Path
 
 CLI for extracting a value from a JSON file based on a JSONPath input
 
